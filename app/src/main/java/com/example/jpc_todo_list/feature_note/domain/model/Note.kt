@@ -9,7 +9,7 @@ import com.example.jpc_todo_list.ui.theme.Violet
 
 @Entity
 data class Note(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int?,
     val title: String,
     val description: String,
     val timeStamp: Long,

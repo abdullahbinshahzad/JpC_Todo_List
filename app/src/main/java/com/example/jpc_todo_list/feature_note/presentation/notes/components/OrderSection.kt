@@ -15,7 +15,7 @@ import com.example.jpc_todo_list.feature_note.domain.util.OrderType
 fun OrderSection(
     modifier: Modifier = Modifier,
     orderBy: OrderBy = OrderBy.Date(OrderType.Descending),
-    onOrderChange: (OrderBy) -> Unit
+    onOrderChange: Any
 ) {
     Column(
         modifier = modifier

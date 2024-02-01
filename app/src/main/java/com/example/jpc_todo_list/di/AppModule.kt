@@ -8,6 +8,7 @@ import com.example.jpc_todo_list.feature_note.domain.repository.NoteRepository
 import com.example.jpc_todo_list.feature_note.domain.use_case.AddNote
 import com.example.jpc_todo_list.feature_note.domain.use_case.DeleteNotes
 import com.example.jpc_todo_list.feature_note.domain.use_case.GetNotes
+import com.example.jpc_todo_list.feature_note.domain.use_case.GetSingleNote
 import com.example.jpc_todo_list.feature_note.domain.use_case.NoteUseCases
 import dagger.Module
 import dagger.Provides
@@ -42,7 +43,8 @@ object AppModule {
         return  NoteUseCases(
             getNotes = GetNotes(noteRepository),
             deleteNotes = DeleteNotes(noteRepository),
-            addNote = AddNote(noteRepository)
+            addNote = AddNote(noteRepository),
+            getSingleNote = GetSingleNote(noteRepository)
         )
     }
 }
