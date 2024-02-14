@@ -7,10 +7,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -42,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = Screen.NotesScreen.route) {
                             NoteScreen(navController = navController)
                         }
-                        composable (route = Screen. AddEditNoteScreen.route +
+                        composable (route = Screen.AddEditNoteScreen.route +
                                     "?noteId={noteId}&noteColor={noteColor}",
                             arguments = listOf(
                                 navArgument(
@@ -66,25 +63,8 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
-                    Greeting("Android")
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    JpC_Todo_ListTheme {
-        Greeting("Android")
     }
 }

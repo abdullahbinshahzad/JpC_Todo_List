@@ -70,7 +70,7 @@ fun NoteItem(
         ) {
             Text(
                 text = note.title,
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
@@ -98,3 +98,13 @@ fun NoteItem(
         }
     }
 }
+//@Preview
+//@Composable
+//fun NoteItemPreview() {
+//    JpC_Todo_ListTheme {
+//        items(items = state.note)
+//        NoteItem(note = ) {
+//
+//        }
+//    }
+//}
