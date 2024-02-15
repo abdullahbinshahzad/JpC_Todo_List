@@ -1,6 +1,7 @@
 package com.example.jpc_todo_list.feature_note.presentation.add_edit_note
 
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
@@ -31,7 +32,7 @@ class AddEditNoteViewModel @Inject constructor(
     ))
     val noteContent: State <NoteTextFieldState> = _noteContent
 
-    private val _noteColor = mutableStateOf(Note.noteColor.random().toArgb())
+    private val _noteColor = mutableIntStateOf(Note.noteColor.random().toArgb())
     val noteColor: State<Int> = _noteColor
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
@@ -53,7 +54,7 @@ class AddEditNoteViewModel @Inject constructor(
                             text = note.description,
                             isHintVisible = false
                         )
-                        _noteColor.value = note.color
+                        _noteColor.intValue = note.color
                     }
                 }
             }
@@ -64,7 +65,8 @@ class AddEditNoteViewModel @Inject constructor(
         when(event){
             is AddEditNoteEvent.EnteredTitle -> {
                 _noteTitle.value = noteTitle.value.copy(
-                    text = event.value)
+                    text = event.value
+                )
             }
             is AddEditNoteEvent.ChangeTitleFocus -> {
                 _noteTitle.value = noteTitle.value.copy(
@@ -84,7 +86,7 @@ class AddEditNoteViewModel @Inject constructor(
                 )
             }
             is AddEditNoteEvent.ChangeColor -> {
-                _noteColor.value = event.color
+                _noteColor.intValue = event.color
             }
 
             is AddEditNoteEvent.SaveNote -> {
