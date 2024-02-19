@@ -34,15 +34,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.jpc_todo_list.feature_note.presentation.notes.components.NoteItem
 import com.example.jpc_todo_list.feature_note.presentation.notes.components.OrderSection
 import com.example.jpc_todo_list.feature_note.presentation.util.Screen
-import com.example.jpc_todo_list.ui.theme.JpC_Todo_ListTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -80,7 +77,7 @@ fun NoteScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your Note",
+                    text = "Your Tasks List",
                     style = MaterialTheme.typography.titleLarge
                 )
                 IconButton(
@@ -101,14 +98,14 @@ fun NoteScreen(
             ) {
                 OrderSection(
                     modifier = Modifier
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = 15.dp),
                     orderBy = state.orderBy,
                     onOrderChange = {
                         viewModel.onEvent(NoteEvents.Order(it))
                     }
                 )
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(5.dp))
             LazyColumn(modifier = Modifier.fillMaxWidth()){
                 items(items = state.note){notes ->
                     NoteItem(
@@ -117,7 +114,10 @@ fun NoteScreen(
                             .fillMaxWidth()
                             .clickable {
                                 navController.navigate(Screen.AddEditNoteScreen.route +
-                                            "?noteId = ${notes.id} & ?noteTitle = ${notes.title}  & noteColor = ${notes.color}"
+                                        "?noteId=${notes.id}" +
+                                        "&noteTitle=${notes.title}" +
+                                        "&noteDescription=${notes.description}" +
+                                        "&noteColor=${notes.color}"
                                 )
                             },
                         onDeleteSlideLeft = {
@@ -133,16 +133,9 @@ fun NoteScreen(
                             }
                         }
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                 }
             }
         }
-    }
-}
-@Preview
-@Composable
-fun NoteScreenPreview() {
-    JpC_Todo_ListTheme {
-        NoteScreen(navController = rememberNavController())
     }
 }

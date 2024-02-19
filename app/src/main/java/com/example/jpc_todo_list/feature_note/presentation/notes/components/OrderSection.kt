@@ -1,14 +1,16 @@
 package com.example.jpc_todo_list.feature_note.presentation.notes.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jpc_todo_list.feature_note.domain.util.OrderBy
@@ -27,8 +29,9 @@ fun OrderSection(
     ) {
         Row(
             modifier = Modifier
-                .padding(1.dp)
+                .padding(4.dp)
                 .fillMaxWidth()
+                .background(Color.LightGray, shape = CutCornerShape(5.dp))
         ) {
             DefaultRadioButton(text = "Name",
                 selected = orderBy is OrderBy.Name,
@@ -57,6 +60,7 @@ fun OrderSection(
             modifier = Modifier
                 .padding(1.dp)
                 .fillMaxWidth()
+                .background(Color.LightGray, shape = CutCornerShape(5.dp))
         ){
             DefaultRadioButton(text = "Ascending",
                 selected = orderBy.orderType is OrderType.Ascending,

@@ -10,9 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.jpc_todo_list.ui.theme.JpC_Todo_ListTheme
 
 @Composable
 fun DefaultRadioButton(
@@ -30,17 +28,10 @@ fun DefaultRadioButton(
             onClick = onSelect,
             colors = RadioButtonDefaults.colors(
                 selectedColor = MaterialTheme.colorScheme.primary,
-                unselectedColor = MaterialTheme.colorScheme.background
+                unselectedColor = MaterialTheme.colorScheme.outline
             )
         )
         Spacer(modifier = modifier.width(8.dp))
         Text(text = text, style = MaterialTheme.typography.bodyMedium)
-    }
-}
-@Preview
-@Composable
-fun DefaultRadioButtonPreview() {
-    JpC_Todo_ListTheme {
-        DefaultRadioButton(text = "Date", selected = false, onSelect = { /*TODO*/ })
     }
 }
