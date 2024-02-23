@@ -15,6 +15,6 @@ class AddNote(private val noteRepository: NoteRepository) {
         if (note.description.isBlank()){
             throw InvalidNoteException("Description of the note can't be empty")
         }
-        noteRepository.insertNote(note)
+        return noteRepository.insertNote(note)
     }
 }

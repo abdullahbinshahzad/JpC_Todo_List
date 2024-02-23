@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class GetNotes(private val noteRepository: NoteRepository) {
-
     operator fun invoke(orderBy: OrderBy = OrderBy.Date(OrderType.Descending)): Flow<List<Note>>{
         return noteRepository.getAllNote().map { notes ->
             when(orderBy.orderType){

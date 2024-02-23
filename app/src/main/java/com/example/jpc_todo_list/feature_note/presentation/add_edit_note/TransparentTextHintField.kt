@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.TextField
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.OutlinedTextField
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +32,7 @@ fun TransparentTextHintField(
 ){
     val isFocused by remember { mutableStateOf(false) }
     Box(modifier = modifier) {
-        TextField(
+        OutlinedTextField(
             value = text,
             onValueChange = onValueChange,
             singleLine = singleLine,
@@ -38,8 +40,8 @@ fun TransparentTextHintField(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.Transparent),
-            leadingIcon = {
-                if (isHintVisible && text.isEmpty() && !isFocused) {
+            label = {
+                if (isHintVisible && !isFocused) {
                     Text(
                         text = hint,
                         style = textStyle,
@@ -52,10 +54,7 @@ fun TransparentTextHintField(
             ),
             keyboardOptions = KeyboardOptions.Default.copy(
                 imeAction = ImeAction.Done
-            ),
-            keyboardActions = KeyboardActions(onDone = {
-                onFocusChange(false)
-            })
+            )
         )
     }
 }

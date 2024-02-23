@@ -1,12 +1,13 @@
 package com.example.jpc_todo_list.feature_note.domain.model
 
+import androidx.compose.ui.graphics.Color
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.jpc_todo_list.ui.theme.colorBlue
-import com.example.jpc_todo_list.ui.theme.colorGreen
-import com.example.jpc_todo_list.ui.theme.colorRed
-import com.example.jpc_todo_list.ui.theme.colorViolet
-import com.example.jpc_todo_list.ui.theme.colorBabyBlue
+import com.example.jpc_todo_list.ui.theme.BrightRed
+import com.example.jpc_todo_list.ui.theme.Cyan
+import com.example.jpc_todo_list.ui.theme.ElectricPurple
+import com.example.jpc_todo_list.ui.theme.Yellow
+import com.example.jpc_todo_list.ui.theme.YellowGreen
 
 @Entity
 data class Note(
@@ -17,7 +18,7 @@ data class Note(
     val color: Int
 ){
     companion object{
-        val noteColor = listOf(colorRed, colorViolet, colorBlue, colorGreen, colorBabyBlue)
+        val noteColor = listOf(ElectricPurple, YellowGreen, Cyan, Yellow, BrightRed)
     }
 }
 class InvalidNoteException(message: String): Exception(message)

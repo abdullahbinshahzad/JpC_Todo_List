@@ -23,10 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
 import com.example.jpc_todo_list.feature_note.domain.model.Note
+import com.example.jpc_todo_list.ui.theme.JpC_Todo_ListTheme
 
 @Composable
 fun NoteItem(
@@ -104,9 +106,10 @@ fun NoteItem(
 //@Composable
 //fun NoteItemPreview() {
 //    JpC_Todo_ListTheme {
-//        items(items = state.note)
-//        NoteItem(note = ) {
-//
-//        }
+//        NoteItem(note = Note(2,
+//            "asdfghj",
+//            "hvgcfhxdz",
+//            19660730083000,
+//            16711936))
 //    }
 //}
