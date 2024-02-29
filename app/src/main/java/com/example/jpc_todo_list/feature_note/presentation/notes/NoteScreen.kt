@@ -20,7 +20,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.SnackbarResult
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -32,6 +31,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.filled.Sort
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -56,7 +56,7 @@ fun NoteScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                          navController.navigate(Screen.AddEditNoteScreen.route)
+                    navController.navigate(Screen.AddEditNoteScreen.route)
                 },
                 modifier = Modifier.padding(10.dp),
                 contentColor = MaterialTheme.colorScheme.onPrimary,
@@ -72,12 +72,13 @@ fun NoteScreen(
                 .padding(padding)
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth()
+                    .padding(horizontal = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Your Tasks List",
+                    text = "Todo List",
                     style = MaterialTheme.typography.titleLarge
                 )
                 IconButton(
@@ -86,7 +87,7 @@ fun NoteScreen(
                     },
                 ) {
                     Icon(
-                        imageVector = Icons.Default.ArrowDownward,
+                        imageVector = Icons.Default.Sort,
                         contentDescription = "Sort"
                     )
                 }
@@ -97,8 +98,6 @@ fun NoteScreen(
                 exit = fadeOut() + slideOutVertically()
             ) {
                 OrderSection(
-                    modifier = Modifier
-                        .padding(vertical = 15.dp),
                     orderBy = state.orderBy,
                     onOrderChange = {
                         viewModel.onEvent(NoteEvents.Order(it))
@@ -106,36 +105,41 @@ fun NoteScreen(
                 )
             }
             Spacer(modifier = Modifier.height(5.dp))
-            LazyColumn(modifier = Modifier.fillMaxWidth()){
-                items(items = state.note){notes ->
-                    NoteItem(
-                        note = notes,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                navController.navigate(Screen.AddEditNoteScreen.route +
-                                        "?noteId=${notes.id}" +
-                                        "&noteTitle=${notes.title}" +
-                                        "&noteDescription=${notes.description}" +
-                                        "&noteColor=${notes.color}"
-                                )
-                            },
-                        onDeleteSlideLeft = {
-                            viewModel.onEvent(NoteEvents.DeleteNote(notes))
-                            scope.launch {
-                                val result = scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "Note Deleted",
-                                    actionLabel = "Undo"
-                                )
-                                if (result == SnackbarResult.ActionPerformed){
-                                    viewModel.onEvent(NoteEvents.RestoreNote)
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp)
+            ) {
+                items(items = state.note) { notes ->
+                        NoteItem(
+                            note = notes,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    navController.navigate(
+                                        Screen.AddEditNoteScreen.route +
+                                                "?noteId=${notes.id}" +
+                                                "&noteTitle=${notes.title}" +
+                                                "&noteDescription=${notes.description}" +
+                                                "&noteColor=${notes.color}"
+                                    )
+                                },
+                            onDeleteSlideLeft = {
+                                viewModel.onEvent(NoteEvents.DeleteNote(notes))
+                                scope.launch {
+                                    val result = scaffoldState.snackbarHostState.showSnackbar(
+                                        message = "Note Deleted",
+                                        actionLabel = "Undo"
+                                    )
+                                    if (result == SnackbarResult.ActionPerformed) {
+                                        viewModel.onEvent(NoteEvents.RestoreNote)
+                                    }
                                 }
                             }
-                        }
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                    }
                 }
             }
         }
     }
-}

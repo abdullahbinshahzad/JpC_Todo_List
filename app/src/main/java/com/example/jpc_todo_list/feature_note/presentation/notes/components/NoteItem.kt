@@ -23,12 +23,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
 import com.example.jpc_todo_list.feature_note.domain.model.Note
-import com.example.jpc_todo_list.ui.theme.JpC_Todo_ListTheme
 
 @Composable
 fun NoteItem(
@@ -84,7 +82,7 @@ fun NoteItem(
                 text = note.description,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                maxLines = 10,
+                maxLines = 3,
                 overflow = TextOverflow.Ellipsis
             )
         }
@@ -93,23 +91,11 @@ fun NoteItem(
             modifier = Modifier.align(Alignment.BottomEnd)
         )
         {
-            Icon(imageVector = Icons.Default.Delete,
+            Icon(
+                imageVector = Icons.Default.Delete,
                 contentDescription = "Delete Note",
                 tint = MaterialTheme.colorScheme.onSurface
             )
         }
     }
 }
-
-
-//@Preview
-//@Composable
-//fun NoteItemPreview() {
-//    JpC_Todo_ListTheme {
-//        NoteItem(note = Note(2,
-//            "asdfghj",
-//            "hvgcfhxdz",
-//            19660730083000,
-//            16711936))
-//    }
-//}

@@ -1,6 +1,7 @@
 package com.example.jpc_todo_list.feature_note.presentation.notes.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,10 +29,12 @@ fun OrderSection(
             .fillMaxWidth()
     ) {
         Row(
+
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxWidth()
-                .background(Color.LightGray, shape = CutCornerShape(5.dp))
+                .background(Color.LightGray, shape = CutCornerShape(5.dp)),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             DefaultRadioButton(text = "Name",
                 selected = orderBy is OrderBy.Name,
@@ -39,7 +42,6 @@ fun OrderSection(
                     onOrderChange(OrderBy.Name(orderBy.orderType))
                 }
             )
-            Spacer(modifier = Modifier.width(5.dp))
 
             DefaultRadioButton(text = "Date",
                 selected = orderBy is OrderBy.Date,
@@ -47,7 +49,6 @@ fun OrderSection(
                     onOrderChange(OrderBy.Date(orderBy.orderType))
                 }
             )
-            Spacer(modifier = Modifier.width(5.dp))
 
             DefaultRadioButton(text = "Color",
                 selected = orderBy is OrderBy.Color,
@@ -58,9 +59,10 @@ fun OrderSection(
         }
         Row (
             modifier = Modifier
-                .padding(1.dp)
+                .padding(4.dp)
                 .fillMaxWidth()
-                .background(Color.LightGray, shape = CutCornerShape(5.dp))
+                .background(Color.LightGray, shape = CutCornerShape(5.dp)),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ){
             DefaultRadioButton(text = "Ascending",
                 selected = orderBy.orderType is OrderType.Ascending,
@@ -68,7 +70,6 @@ fun OrderSection(
                     onOrderChange(orderBy.copy(OrderType.Ascending))
                 }
             )
-            Spacer(modifier = Modifier.width(5.dp))
 
             DefaultRadioButton(text = "Descending",
                 selected = orderBy.orderType is OrderType.Descending,

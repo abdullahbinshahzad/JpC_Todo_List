@@ -3,6 +3,7 @@ package com.example.jpc_todo_list.feature_note.presentation.add_edit_note
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun TransparentTextHintField(
@@ -31,7 +33,8 @@ fun TransparentTextHintField(
     singleLine: Boolean = false,
 ){
     val isFocused by remember { mutableStateOf(false) }
-    Box(modifier = modifier) {
+    Box(modifier = modifier
+        .padding(5.dp)) {
         OutlinedTextField(
             value = text,
             onValueChange = onValueChange,
@@ -43,9 +46,7 @@ fun TransparentTextHintField(
             label = {
                 if (isHintVisible && !isFocused) {
                     Text(
-                        text = hint,
-                        style = textStyle,
-                        color = Color.DarkGray
+                        text = hint
                     )
                 }
             },
