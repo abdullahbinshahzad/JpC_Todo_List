@@ -1,6 +1,9 @@
 package com.example.jpc_todo_list.feature_note.presentation.notes
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -32,6 +35,7 @@ import androidx.compose.material3.MaterialTheme
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.filled.Sort
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -72,7 +76,8 @@ fun NoteScreen(
                 .padding(padding)
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(horizontal = 10.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -111,6 +116,9 @@ fun NoteScreen(
                     .padding(5.dp)
             ) {
                 items(items = state.note) { notes ->
+                    val itemVisibility = remember {
+                        Animatable(0.2f)
+                    }
                         NoteItem(
                             note = notes,
                             modifier = Modifier
@@ -125,8 +133,11 @@ fun NoteScreen(
                                     )
                                 },
                             onDeleteSlideLeft = {
-                                viewModel.onEvent(NoteEvents.DeleteNote(notes))
                                 scope.launch {
+                                    itemVisibility.animateTo(
+                                        targetValue = 0.3f,
+                                        animationSpec = tween(400, easing = LinearOutSlowInEasing))
+                                    viewModel.onEvent(NoteEvents.DeleteNote(notes))
                                     val result = scaffoldState.snackbarHostState.showSnackbar(
                                         message = "Note Deleted",
                                         actionLabel = "Undo"

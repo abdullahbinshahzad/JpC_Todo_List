@@ -3,7 +3,6 @@ package com.example.jpc_todo_list.feature_note.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,9 +18,8 @@ import com.example.jpc_todo_list.feature_note.presentation.util.Screen
 import com.example.jpc_todo_list.ui.theme.JpC_Todo_ListTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+@AndroidEntryPoint     //hilt should inject dependencies
 class MainActivity : ComponentActivity() {
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -31,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController()
+                    val navController = rememberNavController()     //initialized to handle navigation
                     NavHost(
                         navController = navController,
                         startDestination = Screen.NotesScreen.route
