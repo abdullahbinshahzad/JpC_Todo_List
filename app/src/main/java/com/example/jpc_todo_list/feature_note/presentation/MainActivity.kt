@@ -2,7 +2,9 @@ package com.example.jpc_todo_list.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -21,6 +23,16 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint     //hilt should inject dependencies
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT,
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT
+            )
+        )
         super.onCreate(savedInstanceState)
         setContent {
             JpC_Todo_ListTheme {
@@ -35,7 +47,8 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.NotesScreen.route
                     ) {
                         composable(route = Screen.NotesScreen.route) {
-                            NoteScreen(navController = navController)
+                            NoteScreen(
+                                navController = navController)
                         }
                         composable (route = Screen.AddEditNoteScreen.route +
                                     "?noteId={noteId}&noteColor={noteColor}",

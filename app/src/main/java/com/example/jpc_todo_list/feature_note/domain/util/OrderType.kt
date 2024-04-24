@@ -1,6 +1,6 @@
 package com.example.jpc_todo_list.feature_note.domain.util
 
 sealed class OrderType {
-    object Ascending: OrderType()
-    object Descending: OrderType()
+    data object Ascending: OrderType()
+    data object Descending: OrderType()
 }

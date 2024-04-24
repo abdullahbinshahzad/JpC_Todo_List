@@ -34,6 +34,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -54,7 +55,7 @@ fun NoteScreen(
     val state = viewModel.state.value
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-
+// todo don't use view model in composable parameter
     Scaffold(
         scaffoldState = scaffoldState,
         floatingActionButton = {
@@ -62,7 +63,7 @@ fun NoteScreen(
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.padding(15.dp),
                 contentColor = MaterialTheme.colorScheme.onPrimary,
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
@@ -73,7 +74,7 @@ fun NoteScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
+                .padding(top = 30.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -83,7 +84,8 @@ fun NoteScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Todo List",
+                    modifier = Modifier.padding(padding),
+                    text = "Todo List",// todo use string resources
                     style = MaterialTheme.typography.titleLarge
                 )
                 IconButton(
@@ -92,7 +94,7 @@ fun NoteScreen(
                     },
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Sort,
+                        imageVector = Icons.AutoMirrored.Filled.Sort,
                         contentDescription = "Sort"
                     )
                 }

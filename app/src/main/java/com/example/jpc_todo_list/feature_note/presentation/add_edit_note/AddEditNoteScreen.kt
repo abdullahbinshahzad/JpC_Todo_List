@@ -87,7 +87,9 @@ fun AddEditNoteScreen(
         FloatingActionButton(
             onClick = {
                 viewModel.onEvent(AddEditNoteEvent.SaveNote)
-            }, backgroundColor = MaterialTheme.colors.primary
+            },
+            modifier = Modifier.padding(15.dp),
+            backgroundColor = MaterialTheme.colors.primary
         ) {
             Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
         }
@@ -95,12 +97,13 @@ fun AddEditNoteScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(noteBackgroundAnimatable.value)
                 .padding(padding)
+                .background(noteBackgroundAnimatable.value)
         ) {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(top = 30.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Note.noteColor.forEach { color ->
@@ -128,6 +131,8 @@ fun AddEditNoteScreen(
                     )
                 }
             }
+
+            // todo use extention functions for modifiers
             Spacer(modifier = Modifier.height(16.dp))
             TransparentTextHintField(text = titleState.text,
                 hint = titleState.hint,

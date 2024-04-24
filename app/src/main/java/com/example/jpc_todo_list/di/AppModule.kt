@@ -16,8 +16,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+@Module  //indicating dagger hilt module
+@InstallIn(SingletonComponent::class)//lifetime of dependencies
 object AppModule {
 
     @Provides
